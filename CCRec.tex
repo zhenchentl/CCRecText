@@ -16,7 +16,7 @@
 % Actually, it's up to you to strictly adhere to this author notation.
 \author{
   \alignauthor{
-  	\textbf{First Author}\\
+  	\textbf{Zhen Chen}\\
   	\affaddr{AuthorCo, Inc.}\\
   	\affaddr{123 Author Ave.}\\
   	\affaddr{Authortown, PA 54321 USA}\\
@@ -30,7 +30,7 @@
   }
   \vfil
   \alignauthor{
-  	\textbf{Second Author}\\
+  	\textbf{Huizhen Jiang}\\
   	\affaddr{AuthorCo, Inc.}\\
   	\affaddr{123 Author Ave.}\\
   	\affaddr{Authortown, PA 54321 USA}\\
@@ -44,7 +44,7 @@
   }
   \vfil
   \alignauthor{
-  	\textbf{Third Author}\\
+  	\textbf{Haifeng Liu}\\
   	\affaddr{AuthorCo, Inc.}\\
   	\affaddr{123 Author Ave.}\\
   	\affaddr{Authortown, PA 54321 USA}\\
@@ -89,7 +89,7 @@
 \maketitle
 
 \begin{abstract}
-Due to the expansion of academic research in diverse fields, the problem of finding relevant and potential collaborators has become cumbersome. In this paper, we propose an academic collaboration recommendation model called CCRec. CCRec combines publication contents with collaboration networks to effectively generate academic collaboration recommendation for researchers. Using the DBLP data sets, we conduct benchmarking experiments to ascertain and evaluate the performance of CCRec. Our experimental results show that CCRec outperforms other state-of-the-art method especially in the scenario of topic drift problems.
+Due to the expansion of academic research in diverse fields, the problem of finding relevant and potential collaborators has become cumbersome. In this paper, we propose an academic collaboration recommendation model called CCRec. CCRec combines publication contents with collaboration networks to effectively generate academic collaboration recommendation for researchers. Using the DBLP data sets, we conduct benchmarking experiments to ascertain and evaluate the performance of CCRec. Our experimental results show that CCRec outperforms other state-of-the-art methods especially in the scenario of topic drift problems.
 
 \end{abstract}
 
@@ -111,15 +111,15 @@ Due to the expansion of academic research in diverse fields, the problem of find
 % =============================================================================
 A collaboration network is a type of academic social networks formed by researchers and their collaborations. In academia, recommending collaborators to different researchers (groups) may help researchers build more collaborations and become more prolific.
 
-Some existing research studies have proposed the utilization of affiliations to exploit collaboration networks and profiles of researchers for academic collaboration recommendations \cite{brandao2013using}. However, one important factor that has been consistently ignored by researchers is that collaborations among researchers largely depend on the research field reflected from their publications. Consequently, improved academic collaboration can be achieved through the combination of publication contents and collaboration networks.
+Some existing research studies \cite{benchettara2010supervised} \cite{brandao2012affiliation} \cite{brandao2013using}have proposed the utilization of affiliations to exploit collaboration networks and profiles of researchers for academic collaboration recommendation. However, one important factor that has been consistently ignored by researchers is that collaborations among researchers largely depend on the research field reflected from their publications. Consequently, improved academic collaboration recommendation can be achieved through the combination of publication contents and collaboration networks.
 
-This paper proposes an academic collaboration recommendation model called CCRec. CCRec combines publication contents with collaboration networks to effectively generate academic collaboration recommendations for researchers. CCRec firstly uses topic clustering to partition the words from all the publications' titles into multiple domains. Then, CCRec computes the degree of interest (DoI) and the strength of influence (SoI) pertaining to each domain for each researcher. Finally, DoI and SoI are combined to form the feature vector for each researcher. By comparing the similarity of feature vector, CCRec provide a TopN collaboration recommending list.
+This paper proposes an academic collaboration recommendation model called CCRec. CCRec combines publication contents with collaboration networks to effectively generate academic collaboration recommendation for researchers. CCRec first uses topic clustering to partition the words from all the publications' titles into multiple domains. Then, CCRec computes the degree of interest (DoI) and the strength of influence (SoI) pertaining to each domain for each researcher. Finally, DoI and SoI are combined to form the feature vector for each researcher. By comparing the similarity of feature vector, CCRec provides a TopN collaboration recommendation list.
 
 
 % =============================================================================
 \section{PROPOSED SCHEME}
 % =============================================================================
-Our proposed design scheme for CCRec is inspired by the reality and truth that a researcher usually desires to know other researchers who have similar research interests. As mentioned above, researchers often behave differently across multiple domains of interest. Such behaviors usually reveal academic features of different researchers in the network. In this work, we define the DoI and SoI for researchers in different domains. Furthermore, we use the feature vector combined by DoI and SoI to evaluate the similarity of researchers and then obtain the recommending list.
+Our proposed design scheme for CCRec is inspired by the reality and truth that a researcher usually desires to know other researchers who have similar research interests. As mentioned above, researchers often behave differently across multiple domains of interests. Such behaviors usually reveal academic features of different researchers in the network. In this work, we define the DoI and SoI for researchers in different domains. Furthermore, we use the feature vector combined by DoI and SoI to evaluate the similarity of researchers and then obtain the recommendation list.
 
 %proposed a content based method to measure the "attention-degree" of researchers on different domains by parsing papers' title, and a graph based method to measure the %"influence-strength" by analysis the coauthor networks. Additionally, we merge the two metrics into "membership-degree" to measure the researchers academic interest feature. Finally, %we make a TopN recommendation based on the similarity of researchers' membership-degree vectors.
 
@@ -129,15 +129,15 @@ Our proposed design scheme for CCRec is inspired by the reality and truth that a
 \caption{The architecture diagram of CCRec model}
 \end{figure}
 
-Figure 1 depicts the four components of CCRec: \textit{topic clustering and researcher partition}, \textit{Topic-sensitive random walk}, \textit{vector similarity calculation and TopN recommendation}. Topic clustering and researcher partition distribute researchers according to multiple domains and acquire a DoI for each researcher. Topic-sensitive random walk calculates the SoI in each domain, and the TopN recommendation provides the recommending list.
+Figure 1 depicts the three components of CCRec. Topic clustering and researcher partition distribute researchers according to multiple domains and acquire a DoI for each researcher. Topic-sensitive random walk calculates the SoI in each domain, and the TopN recommendation provides the recommendation list.
 
 \subsection{Topic Clustering and researcher Partition}
 % -----------------------------------------------------------------------------
-In CCRec, topic clustering and researcher partition generate various domains and map all researchers into these domains. Initially, CCRec extract keywords from titles of all the papers for each researcher, and filters out some irrelevant words, e.g. "of","the", "and", etc. As core contents in a paper, preprocessed keywords in CCRec are signified as valuable and reliable data in a variety of academic topics. We use word2vec, a famous tool of NLP (Natural Language Processing) to cluster the keywords into various domains. Then, if some keywords of a researcher belong to a domain, we will partition the researcher to that particular domain. We emphasize that one researcher always belongs to several domains and there are also many researchers in one domain.
+In CCRec, topic clustering and researcher partition generate various domains and map all researchers into these domains. Initially, CCRec extracts keywords from titles of all the papers for each researcher, and filters out some irrelevant words, e.g. "of","the", "and", etc. As core contents in a paper, preprocessed keywords in CCRec are signified as valuable and reliable data in a variety of academic topics. We use word2vec, a famous tool of NLP (Natural Language Processing) to cluster the keywords into various domains. Then, if some keywords of a researcher belong to a domain, we will partition the researcher to that particular domain. We emphasize that one researcher always belongs to several domains and there are also many researchers in one domain.
 
 \subsection{Feature Vector Calculation}
 % -----------------------------------------------------------------------------
-To measure the distribution of researchers' interest, we define DoI as researcher's proportion of interest in one domain:
+To measure the distribution of researchers' interests, we define DoI as researcher's proportion of interest in one domain:
 \begin{equation}
 DoI_{s,d}=\frac{N_{d}}{\sum_{k=1}^{n} N_{k}}
 \end{equation}
@@ -157,12 +157,12 @@ F_{s,d}=DoI_{s}*SoI_{s}
 
 \subsection{Collaboration Recommendation by Feature Vector Similarity}
 % -----------------------------------------------------------------------------
-In CCRec, the academic features of researchers is measured by the feature vector $F$. We use a \emph{cosine similarity} method to compute the similarity of these feature vectors, and further compute the similarity between researchers.
+In CCRec, the academic features of researchers are measured by the feature vector $F$. We use a \emph{cosine similarity} method to compute the similarity of these feature vectors, and further compute the similarity between researchers.
 \begin{equation}
 Sim(s_{1},s_{2})=\frac{\sum_{i=1}^{n}(F_{s_{1},i}*F_{s_{2},i})}{\sqrt{\sum_{i=1}^{n}F_{s_{1},i}^2}*\sqrt{\sum_{i=1}^{n}F_{s_{2},i}^2}}
 \end{equation}
 
-Finally, CCRec recommends potential academic collaborators to researchers who have common interests and high similarities, by providing a Top N recommendation list for each researcher in the network.
+Finally, CCRec recommends potential academic collaborators to researchers who have common interests and high similarities, by providing a TopN recommendation list for each researcher in the network.
 % =============================================================================
 \section{Evaluation and Analysis}
 % =============================================================================
@@ -177,19 +177,19 @@ Finally, CCRec recommends potential academic collaborators to researchers who ha
 \subfigure[F1]{
 \label{fig:2-c}
 \includegraphics[width=0.32\textwidth]{Fig2-c.eps}}
-\caption{Performance of CCRec, RWR and CN}
+\caption{Performance of CCRec, RWRec and CNRec}
 \label{fig:5}       % Give a unique label
 \end{figure*}
-Using a subset of DBLP dataset relevant to data mining, we embarked on benchmarking experiments to evaluate the performance of CCRec. We took the year 2011 as the partition time of training and testing sets. To evaluate our model in a better way, we compared CCRec with two traditional approaches, namely: Random Walk with Restart (RWR) and Common Neighbors (CN) \cite{li2014acrec}. We adopted three metrics to evaluate the performance of CCRec, namely: precision, recall rate and F1. What we should illustrate is that we recommend the new collaborators who never cooperated with the target researcher, because the new collaborators are more meaningful and practical in academia.
+Using a subset of DBLP dataset relevant to data mining, we embarked on benchmarking experiments to evaluate the performance of CCRec. We took the year 2011 as the partition time of training and testing sets. To evaluate our model in a better way, we compared CCRec with the two following approaches. RWRec: a random walk recommendation model based on collaboration networks. CNRec: a common neighbors based recommendation model \cite{lopes2010collaboration}. We adopted three metrics to evaluate the performance of CCRec: precision, recall rate and F1. We recommend the new collaborators who never cooperated with the target researcher, because the new collaborators are more meaningful and practical in academia.
 
-Figure 2 shows the performance of CCRec, RWR and CN in terms of precision, recall rate and F1 with the number of recommended collaborators increasing. It can be observed that CCRec significantly outperforms RWR and CN all the time in these three metrics. CCRec shows a downtrend for precision and an uptrend for recall rate. In the case of F1, it reaches the peak 6.598\% when recommending 18 researchers, which can be regarded as an encouraging and favorable situation point (scenario).
+Figure 2 shows the performance of CCRec, RWRec and CNRec in terms of precision, recall rate and F1 with the number of recommended collaborators increasing. It can be observed that CCRec significantly outperforms RWRec and CNRec all the time in these three metrics. CCRec shows a downtrend for precision and an uptrend for recall rate. In the case of F1, it reaches the peak 6.598\% when recommending 18 researchers.
 
-In a nutshell, CCRec outperforms RWR and CN with higher precision, recall rate and F1. This is because CCRec combines publication contents and collaboration networks which has a distinct advantage in recommending new collaborators.
+In a nutshell, CCRec outperforms RWRec and CNRec with higher precision, recall rate and F1. This is because CCRec combines publication contents and collaboration networks which has a distinct advantage in recommending new collaborators.
 
 % =============================================================================
 \section{Conclusion}
 % =============================================================================
-The conclusions we reach are: 1) CCRec outperforms RWR and CN in precision, recall rate and F1 integrating the content of publications with academic collaboration network. 2) With topic clustering, the problem of topic drift has been well solved.
+The conclusions we reach are: 1) CCRec outperforms RWRec and CNRec in precision, recall rate and F1 integrating publication contents with academic collaboration networks. 2) With topic clustering, the problem of topic drift has been well solved.
 
 Our research on CCRec reveals that, the combination of information regarding publication contents and collaboration networks of researchers can improve the generation of effective academic collaborations.
 
