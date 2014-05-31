@@ -9,7 +9,7 @@
 % DOI string from ACM form confirmation}
 %% EXAMPLE END -- HOW TO OVERRIDE THE DEFAULT COPYRIGHT STRIP -- (July 22, 2013 - Paul Baumann)
 
-\title{Combining Publication Contents and Collaboration Networks for Collaboration Recommendation}
+\title{Exploiting Publication Contents and Collaboration Networks for Collaborator Recommendation}
 \numberofauthors{6}
 % Notice how author names are alternately typesetted to appear ordered in 2-column format;
 % i.e., the first 4 autors on the first column and the other 4 auhors on the second column.
@@ -17,45 +17,40 @@
 \author{
   \alignauthor{
   	\textbf{Zhen Chen}\\
-  	\affaddr{AuthorCo, Inc.}\\
-  	\affaddr{123 Author Ave.}\\
-  	\affaddr{Authortown, PA 54321 USA}\\
-  	\email{author1@anotherco.com}
+  	\affaddr{School of Software}\\
+  	\affaddr{Dalian University of Technology, China}\\
+  	\email{zhenchentl@outlook.com}
   }\alignauthor{
-  	\textbf{Fourth Author}\\
-  	\affaddr{AuthorCo, Inc.}\\
-  	\affaddr{123 Author Ave.}\\
-  	\affaddr{Authortown, PA 54321 USA}\\
-  	\email{author5@anotherco.com}
+  	\textbf{Feng Xia}\\
+  	\affaddr{School of Software}\\
+  	\affaddr{Dalian University of Technology, China}\\
+  	\email{f.xia@acm.org}
   }
   \vfil
   \alignauthor{
   	\textbf{Huizhen Jiang}\\
-  	\affaddr{AuthorCo, Inc.}\\
-  	\affaddr{123 Author Ave.}\\
-  	\affaddr{Authortown, PA 54321 USA}\\
-  	\email{author2@anotherco.com}
+  	\affaddr{School of Software}\\
+  	\affaddr{Dalian University of Technology, China}\\
+  	\email{huizhen.jiang@gmail.com}
   }\alignauthor{
-  	\textbf{Fifth Author}\\
-  	\affaddr{AuthorCo, Inc.}\\
-  	\affaddr{123 Author Ave.}\\
-  	\affaddr{Authortown, PA 54321 USA}\\
-  	\email{author6@anotherco.com}
+  	\textbf{Tie Qiu}\\
+  	\affaddr{School of Software}\\
+  	\affaddr{Dalian University of Technology, China}\\
+  	\email{qiutie@dlut.edu.cn}
   }
   \vfil
   \alignauthor{
   	\textbf{Haifeng Liu}\\
-  	\affaddr{AuthorCo, Inc.}\\
-  	\affaddr{123 Author Ave.}\\
-  	\affaddr{Authortown, PA 54321 USA}\\
-  	\email{author3@anotherco.com}
-  }\alignauthor{
-  	\textbf{Sixth Author}\\
-  	\affaddr{AuthorCo, Inc.}\\
-  	\affaddr{123 Author Ave.}\\
-  	\affaddr{Authortown, PA 54321 USA}\\
-  	\email{author7@anotherco.com}
+  	\affaddr{School of Software}\\
+  	\affaddr{Dalian University of Technology, China}\\
+  	\email{haif.liu@hotmail.com}
   }
+%\alignauthor{
+%  	\textbf{Nana Yaw Asabere}\\
+%  	\affaddr{School of Software}\\
+%  	\affaddr{Dalian University of Technology, China}\\
+%  	\email{yawasabere2005@yahoo.com}
+%  }
 }
 
 % Paper metadata (use plain text, for PDF inclusion and later re-using, if desired)
@@ -89,7 +84,7 @@
 \maketitle
 
 \begin{abstract}
-Due to the expansion of academic research in diverse fields, the problem of finding relevant and potential collaborators has become cumbersome. In this paper, we propose an academic collaboration recommendation model called CCRec. CCRec combines publication contents with collaboration networks to effectively generate academic collaboration recommendation for researchers. Using the DBLP data sets, we conduct benchmarking experiments to ascertain and evaluate the performance of CCRec. Our experimental results show that CCRec outperforms other state-of-the-art methods especially in the scenario of topic drift problems.
+Due to the expansion of academic research in diverse fields, the problem of finding relevant and potential collaborators has become cumbersome. In this work, we propose an academic collaboration recommendation model called CCRec. CCRec combines publication contents with collaboration networks to effectively generate academic collaboration recommendation for researchers. Using the DBLP data sets, we conduct benchmarking experiments to examine the performance of CCRec. Our preliminary experimental results show that CCRec outperforms other state-of-the-art methods especially in addressing the topic drift problems.
 
 \end{abstract}
 
@@ -111,9 +106,9 @@ Due to the expansion of academic research in diverse fields, the problem of find
 % =============================================================================
 A collaboration network is a type of academic social networks formed by researchers and their collaborations. In academia, recommending collaborators to different researchers (groups) may help researchers build more collaborations and become more prolific.
 
-Some existing research studies \cite{benchettara2010supervised} \cite{brandao2012affiliation} \cite{brandao2013using}have proposed the utilization of affiliations to exploit collaboration networks and profiles of researchers for academic collaboration recommendation. However, one important factor that has been consistently ignored by researchers is that collaborations among researchers largely depend on the research field reflected from their publications. Consequently, improved academic collaboration recommendation can be achieved through the combination of publication contents and collaboration networks.
+Some existing research studies \cite{benchettara2010supervised} \cite{brandao2012affiliation} \cite{brandao2013using} have proposed the utilization of affiliations to exploit collaboration networks and profiles of researchers for academic collaboration recommendation. However, one important factor that has been consistently ignored by researchers is that collaborations among researchers largely depend on the research field reflected from their publications. Consequently, improved academic collaboration recommendation can be achieved through the combination of publication contents and collaboration networks.
 
-This paper proposes an academic collaboration recommendation model called CCRec. CCRec combines publication contents with collaboration networks to effectively generate academic collaboration recommendation for researchers. CCRec first uses topic clustering to partition the words from all the publications' titles into multiple domains. Then, CCRec computes the degree of interest (DoI) and the strength of influence (SoI) pertaining to each domain for each researcher. Finally, DoI and SoI are combined to form the feature vector for each researcher. By comparing the similarity of feature vector, CCRec provides a TopN collaboration recommendation list.
+In this work we propose an academic collaboration recommendation model called CCRec. CCRec combines publication contents with collaboration networks to effectively generate academic collaboration recommendation for researchers. CCRec first uses topic clustering to partition the words from all the publications' titles into multiple domains. Then, CCRec computes the degree of interest (DoI) and the strength of influence (SoI) pertaining to each domain for each researcher. Finally, DoI and SoI are combined to form the feature vector for each researcher. By comparing the similarity of feature vector, CCRec provides a TopN collaboration recommendation list.
 
 
 % =============================================================================
@@ -131,7 +126,7 @@ Our proposed design scheme for CCRec is inspired by the reality and truth that a
 
 Figure 1 depicts the three components of CCRec. Topic clustering and researcher partition distribute researchers according to multiple domains and acquire a DoI for each researcher. Topic-sensitive random walk calculates the SoI in each domain, and the TopN recommendation provides the recommendation list.
 
-\subsection{Topic Clustering and researcher Partition}
+\subsection{Topic Clustering and Researcher Partition}
 % -----------------------------------------------------------------------------
 In CCRec, topic clustering and researcher partition generate various domains and map all researchers into these domains. Initially, CCRec extracts keywords from titles of all the papers for each researcher, and filters out some irrelevant words, e.g. "of","the", "and", etc. As core contents in a paper, preprocessed keywords in CCRec are signified as valuable and reliable data in a variety of academic topics. We use word2vec, a famous tool of NLP (Natural Language Processing) to cluster the keywords into various domains. Then, if some keywords of a researcher belong to a domain, we will partition the researcher to that particular domain. We emphasize that one researcher always belongs to several domains and there are also many researchers in one domain.
 
@@ -141,13 +136,13 @@ To measure the distribution of researchers' interests, we define DoI as research
 \begin{equation}
 DoI_{s,d}=\frac{N_{d}}{\sum_{k=1}^{n} N_{k}}
 \end{equation}
-Where $N_{d}$ is the number of keywords of researcher $s$ in domain $d$. It is a content-based method that utilizes the information on the titles of researchers' publications.
+where $N_{d}$ is the number of keywords of researcher $s$ in domain $d$. It is a content-based method that utilizes the information on the titles of researchers' publications.
 
 We define SoI as researcher's strength of influence in one domain, which is measured by a topic-sensitive random walk method based on collaboration networks. The core equation of the random walk method is shown below:
 \begin{equation}
 R_{d}^{(t+1)}=\alpha \mathbf{S}R_{d}^{(t)}+(1-\alpha)q
 \end{equation}
-Where $R_{d}$ represents the rank score vector of all researchers in domain $d$, $q$ is the initial vector $R^0$, and $\alpha$ denotes the damping coefficient. Random walk is an iterative process. After limited iterations, the vector $R$ will be convergent. The vector item in this scenario is defined as SoI. We therefore obtain SoI through $SoI_{s}=R_{d,s}$.
+where $R_{d}$ represents the rank score vector of all researchers in domain $d$, $q$ is the initial vector $R^0$, and $\alpha$ denotes the damping coefficient. Random walk is an iterative process. After limited iterations, the vector $R$ will be convergent. The vector item in this scenario is defined as SoI. We therefore obtain SoI through $SoI_{s}=R_{d,s}$.
 
 To be more specific, we define feature vector $F$ by combining $DoI$ and $SoI$, which measures the academic feature of researchers in various domains.
 
@@ -191,7 +186,7 @@ In a nutshell, CCRec outperforms RWRec and CNRec with higher precision, recall r
 % =============================================================================
 The conclusions we reach are: 1) CCRec outperforms RWRec and CNRec in precision, recall rate and F1 integrating publication contents with academic collaboration networks. 2) With topic clustering, the problem of topic drift has been well solved.
 
-Our research on CCRec reveals that, the combination of information regarding publication contents and collaboration networks of researchers can improve the generation of effective academic collaborations.
+Our research on CCRec reveals that the combination of information regarding publication contents and collaboration networks of researchers can improve the generation of effective academic collaborations.
 
 \balance
 \bibliographystyle{acm-sigchi}
